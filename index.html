@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Élagage en Essonne | Votre élagueur partenaire</title>
+<meta name="description" content="Élagage, abattage et taille de haies dans toute l'Essonne (91). Décrivez vos travaux et recevez votre devis gratuit sous 24 h.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --vert-fonce: #0f2a1f;
+    --vert-fonce-2: #143627;
+    --vert: #1f6b45;
+    --vert-clair: #e3f4ea;
+    --or: #d9a75a;
+    --blanc: #ffffff;
+    --texte: #1b2620;
+    --gris: #6b7670;
+    --bord: #dfe5e1;
+    --rayon: 16px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+    color: var(--texte);
+    background: var(--vert-fonce);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  header { background: var(--blanc); }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; gap: 24px; }
+  .logo { font-weight: 800; font-size: 20px; text-decoration: none; color: var(--vert-fonce); display: flex; align-items: center; gap: 10px; }
+  .logo svg { width: 28px; height: 28px; }
+  nav { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 500; }
+  nav a { text-decoration: none; color: var(--texte); white-space: nowrap; }
+  .logo span { white-space: nowrap; }
+  nav a:hover { color: var(--vert); }
+
+  /* Hero */
+  .hero { color: var(--blanc); padding: 64px 0 80px; }
+  .hero .wrap { display: grid; grid-template-columns: 1.15fr 0.85fr; grid-template-areas: "texte carte" "photo carte"; gap: 0 56px; align-items: start; }
+  .hero-texte { grid-area: texte; }
+  .avant-apres { grid-area: photo; }
+  .carte { grid-area: carte; }
+  .avis { display: flex; align-items: center; gap: 12px; font-size: 14px; color: #c7d3cc; margin-bottom: 24px; }
+  .avis .g { width: 34px; height: 34px; background: var(--blanc); border-radius: 8px; display: grid; place-items: center; }
+  .etoiles { display: flex; gap: 3px; }
+  .etoiles span { width: 26px; height: 26px; background: #f5c33b; display: grid; place-items: center; border-radius: 3px; }
+  .etoiles svg { width: 16px; height: 16px; fill: var(--blanc); }
+  .avis b { color: var(--blanc); }
+  h1 { font-size: clamp(34px, 4.4vw, 52px); line-height: 1.12; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 20px; }
+  h1 .accent { color: var(--or); }
+  .sous-titre { font-size: 18px; color: #c7d3cc; max-width: 560px; margin-bottom: 24px; }
+  .atouts { display: flex; flex-wrap: wrap; gap: 22px; font-size: 14px; color: #c7d3cc; margin-bottom: 36px; list-style: none; }
+  .atouts li { display: flex; align-items: center; gap: 8px; }
+  .atouts svg { width: 18px; height: 18px; stroke: var(--or); }
+
+  /* Avant / après */
+  .avant-apres { position: relative; border-radius: var(--rayon); overflow: hidden; aspect-ratio: 16 / 10; background: var(--vert-fonce-2); user-select: none; touch-action: pan-y; }
+  .avant-apres .img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .avant-apres .img.avant { clip-path: inset(0 50% 0 0); }
+  .avant-apres .placeholder { position: absolute; inset: 0; display: grid; place-items: center; color: rgba(255,255,255,.55); font-size: 14px; font-weight: 600; text-align: center; }
+  .avant-apres .img.apres .placeholder { background: linear-gradient(160deg, #3f6e52, #27503a); padding-left: 50%; }
+  .avant-apres .img.avant .placeholder { background: linear-gradient(160deg, #2c5a3c, #1c3f2a); padding-right: 50%; }
+  .badge { position: absolute; top: 16px; background: var(--blanc); color: var(--texte); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 999px; z-index: 3; }
+  .badge.g { left: 16px; } .badge.d { right: 16px; }
+  .poignee { position: absolute; top: 0; bottom: 0; left: 50%; width: 3px; background: var(--blanc); transform: translateX(-50%); z-index: 2; cursor: ew-resize; }
+  .poignee::after { content: ""; position: absolute; top: 50%; left: 50%; width: 40px; height: 40px; border-radius: 50%; background: var(--blanc); transform: translate(-50%, -50%); box-shadow: 0 4px 14px rgba(0,0,0,.25);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2a1f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 6l-6 6 6 6M15 6l6 6-6 6'/%3E%3C/svg%3E");
+    background-size: 22px; background-repeat: no-repeat; background-position: center; }
+
+  /* Formulaire */
+  .carte { background: var(--blanc); color: var(--texte); border-radius: var(--rayon); padding: 32px; box-shadow: 0 24px 60px rgba(0,0,0,.3); position: sticky; top: 24px; }
+  .carte h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+  .pastille { display: inline-block; background: var(--vert-clair); color: var(--vert); font-size: 13px; font-weight: 700; padding: 4px 10px; border-radius: 6px; margin-bottom: 12px; }
+  .carte .intro { font-size: 14px; color: var(--gris); margin-bottom: 22px; }
+  .ligne { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .champ { margin-bottom: 16px; }
+  label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  label small { font-weight: 400; color: var(--gris); }
+  input, textarea { width: 100%; font: inherit; font-size: 15px; padding: 12px 14px; border: 1px solid var(--bord); border-radius: 10px; background: #fbfcfb; color: var(--texte); transition: border-color .15s, box-shadow .15s; }
+  input:focus, textarea:focus { outline: none; border-color: var(--vert); box-shadow: 0 0 0 3px rgba(31,107,69,.15); background: var(--blanc); }
+  input::placeholder, textarea::placeholder { color: #a3aca7; }
+  textarea { resize: vertical; min-height: 96px; }
+  .aide { font-size: 12px; color: var(--gris); margin-top: 5px; }
+  button[type="submit"] { width: 100%; font: inherit; font-weight: 700; font-size: 16px; color: var(--blanc); background: linear-gradient(180deg, #23774d, #1a5c3b); border: 0; border-radius: 10px; padding: 16px; cursor: pointer; margin-top: 4px; transition: transform .1s, filter .15s; }
+  button[type="submit"]:hover { filter: brightness(1.08); }
+  button[type="submit"]:active { transform: translateY(1px); }
+  .mentions { font-size: 12px; color: var(--gris); margin-top: 14px; }
+  .merci { display: none; text-align: center; padding: 40px 8px; }
+  .merci svg { width: 56px; height: 56px; stroke: var(--vert); margin-bottom: 12px; }
+  .merci h3 { font-size: 22px; margin-bottom: 8px; }
+  .merci p { color: var(--gris); }
+
+  /* Sections */
+  section.claire { background: var(--blanc); padding: 80px 0; }
+  section.claire + section.claire { padding-top: 0; }
+  .titre-section { font-size: clamp(26px, 3vw, 34px); font-weight: 800; letter-spacing: -0.01em; margin-bottom: 12px; color: var(--vert-fonce); }
+  .chapo { color: var(--gris); max-width: 620px; margin-bottom: 40px; }
+  .etapes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .etape { border: 1px solid var(--bord); border-radius: var(--rayon); padding: 28px; }
+  .etape .num { width: 40px; height: 40px; border-radius: 50%; background: var(--vert-fonce); color: var(--or); font-weight: 800; display: grid; place-items: center; margin-bottom: 16px; }
+  .etape h3 { font-size: 18px; margin-bottom: 6px; }
+  .etape p { color: var(--gris); font-size: 15px; }
+  .communes { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
+  .communes li { background: var(--vert-clair); color: var(--vert-fonce); font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 999px; }
+
+  footer { color: #9fb0a7; font-size: 14px; padding: 32px 0; }
+  footer .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+  footer a { text-decoration: none; } footer a:hover { color: var(--blanc); }
+
+  @media (max-width: 960px) {
+    /* Mobile : texte, puis formulaire, puis photo */
+    .hero .wrap { grid-template-columns: 1fr; grid-template-areas: "texte" "carte" "photo"; gap: 32px; }
+    .atouts { margin-bottom: 0; }
+    .carte { position: static; }
+    .etapes { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    header .wrap { flex-direction: column; justify-content: center; height: auto; padding-top: 14px; padding-bottom: 14px; gap: 8px; }
+    nav { gap: 20px; font-size: 14px; }
+  }
+  @media (max-width: 520px) {
+    .wrap { padding: 0 16px; }
+    .hero { padding: 40px 0 56px; }
+    .carte { padding: 24px 18px; }
+    .ligne { grid-template-columns: 1fr; gap: 0; }
+    .atouts { gap: 12px 18px; }
+    .logo span { font-size: 17px; white-space: nowrap; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="#" class="logo" aria-label="Accueil">
+      <svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="12" r="10" fill="#1f6b45"/><circle cx="11" cy="10" r="5" fill="#2e8a5c"/><rect x="14.5" y="18" width="3" height="12" rx="1.5" fill="#0f2a1f"/></svg>
+      <span>Élagage Essonne</span>
+    </a>
+    <nav>
+      <a href="#zones">Zones d'intervention</a>
+      <a href="#fonctionnement">Comment ça marche</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-texte">
+        <div class="avis">
+          <div class="g">
+            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+          </div>
+          <div class="etoiles" aria-hidden="true">
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
+            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
+          </div>
+          <!-- À remplacer par la note et le nombre d'avis réels de la fiche Google -->
+          <div><b>5/5</b> · 15 avis Google</div>
+        </div>
+
+        <h1>Élagage <span class="accent">en Essonne</span> :<br>votre élagueur partenaire</h1>
+        <p class="sous-titre">Nous intervenons dans tout le département. Décrivez vos travaux, recevez votre devis gratuit.</p>
+
+        <ul class="atouts">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Devis gratuit</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Intervention rapide</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Équipe locale expérimentée</li>
+        </ul>
+      </div>
+
+      <!-- Avant / après : déposez avant.jpg et apres.jpg à côté de ce fichier -->
+      <div class="avant-apres" id="avantApres">
+          <div class="img apres" style="background-image:url('apres.jpg')"><div class="placeholder">Photo « après »<br>(apres.jpg)</div></div>
+          <div class="img avant" style="background-image:url('avant.jpg')"><div class="placeholder">Photo « avant »<br>(avant.jpg)</div></div>
+          <span class="badge g">Avant</span>
+          <span class="badge d">Après</span>
+          <div class="poignee" role="slider" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
+      </div>
+
+      <aside class="carte" id="devis">
+        <form id="formDevis" novalidate>
+          <h2>Demandez votre devis gratuit</h2>
+          <span class="pastille">Réponse sous 24 h</span>
+          <p class="intro">Nous vous rappelons pour votre devis gratuit (Essonne).</p>
+
+          <div class="ligne">
+            <div class="champ">
+              <label for="nom">Votre nom *</label>
+              <input id="nom" name="nom" placeholder="Marie Dupont" required autocomplete="name">
+            </div>
+            <div class="champ">
+              <label for="tel">Téléphone *</label>
+              <input id="tel" name="telephone" type="tel" placeholder="06 12 34 56 78" required autocomplete="tel" pattern="^(\+33|0)[1-9]([ .-]?\d{2}){4}$">
+            </div>
+          </div>
+
+          <div class="champ">
+            <label for="email">Email <small>(facultatif)</small></label>
+            <input id="email" name="email" type="email" placeholder="marie@exemple.fr" autocomplete="email">
+          </div>
+
+          <div class="champ">
+            <label for="adresse">Adresse du chantier *</label>
+            <input id="adresse" name="adresse" placeholder="12 rue des Lilas" required autocomplete="street-address">
+            <p class="aide">Nécessaire au devis (visite technique, accès matériel).</p>
+          </div>
+
+          <div class="ligne">
+            <div class="champ">
+              <label for="commune">Commune *</label>
+              <input id="commune" name="commune" placeholder="Évry-Courcouronnes" required autocomplete="address-level2">
+            </div>
+            <div class="champ">
+              <label for="cp">Code postal *</label>
+              <input id="cp" name="code_postal" placeholder="91000" required inputmode="numeric" pattern="^91\d{3}$" maxlength="5" autocomplete="postal-code">
+            </div>
+          </div>
+
+          <div class="champ">
+            <label for="travaux">Décrivez vos travaux (élagage, abattage, taille…) *</label>
+            <textarea id="travaux" name="travaux" placeholder="Ex. : démontage d'un frêne de 22 m en fond de jardin…" required></textarea>
+          </div>
+
+          <button type="submit">Demander mon devis gratuit</button>
+          <p class="mentions">Service gratuit et sans engagement. Vos coordonnées servent uniquement à établir votre devis. <a href="#">Politique de confidentialité</a></p>
+        </form>
+
+        <div class="merci" id="merci" role="status">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+          <h3>Demande envoyée</h3>
+          <p>Merci ! Nous vous rappelons sous 24 h pour fixer la visite.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="claire" id="fonctionnement">
+    <div class="wrap">
+      <h2 class="titre-section">Comment ça marche</h2>
+      <p class="chapo">Trois étapes entre votre demande et un jardin dégagé.</p>
+      <div class="etapes">
+        <div class="etape"><div class="num">1</div><h3>Vous décrivez vos travaux</h3><p>Remplissez le formulaire en deux minutes : arbre, hauteur, accès.</p></div>
+        <div class="etape"><div class="num">2</div><h3>Nous vous rappelons</h3><p>Un élagueur passe sur place et vous remet un devis gratuit et détaillé.</p></div>
+        <div class="etape"><div class="num">3</div><h3>Nous intervenons</h3><p>Taille, abattage ou démontage, puis évacuation des déchets verts.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="claire" id="zones">
+    <div class="wrap">
+      <h2 class="titre-section">Zones d'intervention en Essonne (91)</h2>
+      <p class="chapo">Nous couvrons tout le département, notamment :</p>
+      <ul class="communes">
+        <li>Évry-Courcouronnes</li><li>Corbeil-Essonnes</li><li>Massy</li><li>Palaiseau</li>
+        <li>Savigny-sur-Orge</li><li>Sainte-Geneviève-des-Bois</li><li>Viry-Châtillon</li><li>Athis-Mons</li>
+        <li>Draveil</li><li>Yerres</li><li>Brétigny-sur-Orge</li><li>Arpajon</li>
+        <li>Étampes</li><li>Mennecy</li><li>Gif-sur-Yvette</li><li>Orsay</li>
+        <li>Les Ulis</li><li>Longjumeau</li><li>Montgeron</li><li>Dourdan</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Élagage Essonne · Élagage, abattage et taille de haies dans le 91</span>
+    <span><a href="#">Mentions légales</a> · <a href="#">Politique de confidentialité</a></span>
+  </div>
+</footer>
+
+<script>
+  // Masque le texte de remplacement quand la photo existe
+  document.querySelectorAll('.avant-apres .img').forEach(el => {
+    const url = el.style.backgroundImage.slice(5, -2);
+    const img = new Image();
+    img.onload = () => el.querySelector('.placeholder').remove();
+    img.src = url;
+  });
+
+  // Curseur avant / après
+  const box = document.getElementById('avantApres');
+  const avant = box.querySelector('.avant');
+  const poignee = box.querySelector('.poignee');
+  const placer = pct => {
+    pct = Math.max(0, Math.min(100, pct));
+    avant.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+    poignee.style.left = pct + '%';
+    poignee.setAttribute('aria-valuenow', Math.round(pct));
+  };
+  const depuisEvent = e => {
+    const r = box.getBoundingClientRect();
+    placer((e.clientX - r.left) / r.width * 100);
+  };
+  let drag = false, touche = false;
+  box.addEventListener('pointerdown', e => { touche = true; drag = true; box.setPointerCapture(e.pointerId); depuisEvent(e); });
+
+  // Balayage automatique à l'apparition du bloc (s'arrête dès que l'utilisateur touche le curseur)
+  const balayer = () => {
+    const etapes = [[50, 0], [88, 900], [12, 1700], [50, 1100]];
+    let i = 0, depart = 50, t0 = null;
+    const tick = t => {
+      if (touche || i >= etapes.length) return;
+      const [cible, duree] = etapes[i];
+      if (t0 === null) t0 = t;
+      const p = duree ? Math.min(1, (t - t0) / duree) : 1;
+      const e = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      placer(depart + (cible - depart) * e);
+      if (p >= 1) { depart = cible; t0 = null; i++; }
+      requestAnimationFrame(tick);
+    };
+    setTimeout(() => requestAnimationFrame(tick), 400);
+  };
+  if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const obs = new IntersectionObserver(([en]) => {
+      if (en.isIntersecting) { balayer(); obs.disconnect(); }
+    }, { threshold: 0.6 });
+    obs.observe(box);
+  }
+  box.addEventListener('pointermove', e => { if (drag) depuisEvent(e); });
+  box.addEventListener('pointerup', () => { drag = false; });
+  poignee.addEventListener('keydown', e => {
+    const v = +poignee.getAttribute('aria-valuenow');
+    if (e.key === 'ArrowLeft') placer(v - 5);
+    if (e.key === 'ArrowRight') placer(v + 5);
+  });
+
+  // Formulaire : brancher ici votre envoi (Formspree, Make, e-mail…)
+  const form = document.getElementById('formDevis');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('input, textarea').forEach(ch => {
+      const valide = ch.checkValidity();
+      ch.style.borderColor = valide ? '' : '#d14343';
+      if (!valide && ok) { ch.focus(); ok = false; }
+    });
+    if (!ok) return;
+    form.style.display = 'none';
+    document.getElementById('merci').style.display = 'block';
+  });
+</script>
+</body>
+</html>
