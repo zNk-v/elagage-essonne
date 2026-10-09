@@ -93,6 +93,9 @@
   button[type="submit"] { width: 100%; font: inherit; font-weight: 700; font-size: 16px; color: var(--blanc); background: linear-gradient(180deg, #23774d, #1a5c3b); border: 0; border-radius: 10px; padding: 16px; cursor: pointer; margin-top: 4px; transition: transform .1s, filter .15s; }
   button[type="submit"]:hover { filter: brightness(1.08); }
   button[type="submit"]:active { transform: translateY(1px); }
+  .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .erreur-envoi { font-size: 14px; color: #b42318; background: #fef3f2; border-radius: 8px; padding: 10px 12px; margin-top: 12px; }
+  button[type="submit"]:disabled { opacity: .6; cursor: wait; }
   .mentions { font-size: 12px; color: var(--gris); margin-top: 14px; }
   .merci { display: none; text-align: center; padding: 40px 8px; }
   .merci svg { width: 56px; height: 56px; stroke: var(--vert); margin-bottom: 12px; }
@@ -203,7 +206,7 @@
             </div>
             <div class="champ">
               <label for="tel">Téléphone *</label>
-              <input id="tel" name="telephone" type="tel" placeholder="06 12 34 56 78" required autocomplete="tel" pattern="^(\+33|0)[1-9]([ .-]?\d{2}){4}$">
+              <input id="tel" name="telephone" type="tel" placeholder="06 12 34 56 78" required autocomplete="tel" pattern="^(\+33|0)[1-9]([ .\-]?\d{2}){4}$">
             </div>
           </div>
 
@@ -234,8 +237,12 @@
             <textarea id="travaux" name="travaux" placeholder="Ex. : démontage d'un frêne de 22 m en fond de jardin…" required></textarea>
           </div>
 
+          <!-- Pot de miel : invisible pour un humain, rempli par les robots -->
+          <div class="piege" aria-hidden="true"><label for="website">Site web</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+
           <button type="submit">Demander mon devis gratuit</button>
-          <p class="mentions">Service gratuit et sans engagement. Vos coordonnées servent uniquement à établir votre devis. <a href="#">Politique de confidentialité</a></p>
+          <p class="erreur-envoi" id="erreurEnvoi" role="alert" hidden>L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à <a href="mailto:contact@sitaly.fr">contact@sitaly.fr</a>.</p>
+          <p class="mentions">Service gratuit et sans engagement. Vos coordonnées servent uniquement à établir votre devis et sont transmises à l'élagueur partenaire de votre secteur. <a href="#">Politique de confidentialité</a></p>
         </form>
 
         <div class="merci" id="merci" role="status">
@@ -337,19 +344,57 @@
     if (e.key === 'ArrowRight') placer(v + 5);
   });
 
-  // Formulaire : brancher ici votre envoi (Formspree, Make, e-mail…)
+  // Formulaire : envoi au relais sitaly-forms (Worker Cloudflare), qui transmet
+  // la fiche lead par e-mail via Brevo et enregistre le contact dans la liste
+  // « Leads Élagage Essonne ». Voir ~/sitaly-forms/src/index.js, LEADS.
+  const ENDPOINT = 'https://sitaly-forms.sitaly-forms.workers.dev';
+
+  // Identifiant de clic Google Ads, gardé le temps de la visite pour relier
+  // chaque lead à sa campagne.
+  const gclid = new URLSearchParams(location.search).get('gclid');
+  try { if (gclid) sessionStorage.setItem('gclid', gclid); } catch (e) {}
+  const lireGclid = () => { try { return sessionStorage.getItem('gclid') || ''; } catch (e) { return gclid || ''; } };
+
   const form = document.getElementById('formDevis');
-  form.addEventListener('submit', e => {
+  const erreur = document.getElementById('erreurEnvoi');
+  const bouton = form.querySelector('button[type="submit"]');
+  form.addEventListener('submit', async e => {
     e.preventDefault();
+    erreur.hidden = true;
     let ok = true;
-    form.querySelectorAll('input, textarea').forEach(ch => {
+    form.querySelectorAll('input:not(#website), textarea').forEach(ch => {
       const valide = ch.checkValidity();
       ch.style.borderColor = valide ? '' : '#d14343';
       if (!valide && ok) { ch.focus(); ok = false; }
     });
     if (!ok) return;
-    form.style.display = 'none';
-    document.getElementById('merci').style.display = 'block';
+
+    const v = name => form.elements[name].value.trim();
+    const demande = {
+      lead_form: 'elagage-essonne',
+      name: v('nom'), phone: v('telephone'), email: v('email'),
+      address: v('adresse'), commune: v('commune'), postal_code: v('code_postal'),
+      message: v('travaux'),
+      website: v('website'), page: location.pathname, gclid: lireGclid()
+    };
+
+    bouton.disabled = true;
+    bouton.textContent = 'Envoi en cours…';
+    try {
+      const r = await fetch(ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify(demande)
+      });
+      if (!r.ok) throw new Error(r.status);
+      form.style.display = 'none';
+      document.getElementById('merci').style.display = 'block';
+      if (typeof window.gtag === 'function') gtag('event', 'generate_lead', { form_id: 'elagage-essonne' });
+    } catch (err) {
+      erreur.hidden = false;
+      bouton.disabled = false;
+      bouton.textContent = 'Demander mon devis gratuit';
+    }
   });
 </script>
 </body>
