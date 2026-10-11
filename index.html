@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Abattage et élagage de grands arbres en Essonne | Élagage Essonne</title>
-<meta name="description" content="Abattage, démontage et élagage de grands arbres dans toute l'Essonne (91). Visite et devis gratuits par un élagueur local, sous 24 h.">
+<meta name="description" content="Abattage, démontage et élagage de grands arbres dans toute l'Essonne (91). Visite et devis gratuits par un élagueur local. Rappel sous 24 h ouvrées.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -95,6 +95,10 @@
   button[type="submit"]:hover { filter: brightness(1.08); }
   button[type="submit"]:active { transform: translateY(1px); }
   .piege { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .erreur-champ { font-size: 13px; color: #b42318; margin-top: 5px; }
+  input[aria-invalid="true"], select[aria-invalid="true"], textarea[aria-invalid="true"] { border-color: #d14343; }
+  .commune-ok { color: var(--vert); font-weight: 600; }
+  .badge.illu { top: auto; bottom: 12px; left: 12px; font-size: 11px; font-weight: 600; background: rgba(255,255,255,.85); }
   .erreur-envoi { font-size: 14px; color: #b42318; background: #fef3f2; border-radius: 8px; padding: 10px 12px; margin-top: 12px; }
   button[type="submit"]:disabled { opacity: .6; cursor: wait; }
   .mentions { font-size: 12px; color: var(--gris); margin-top: 14px; }
@@ -181,20 +185,6 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-texte">
-        <div class="avis">
-          <div class="g">
-            <svg width="20" height="20" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
-          </div>
-          <div class="etoiles" aria-hidden="true">
-            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
-            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
-            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
-            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
-            <span><svg viewBox="0 0 24 24"><path d="M12 2l3 6.9 7.5.7-5.7 5 1.7 7.4L12 18.3 5.5 22l1.7-7.4-5.7-5 7.5-.7z"/></svg></span>
-          </div>
-          <!-- Note des artisans partenaires : vraie tant que chacun est noté 5/5 sur Google -->
-          <div class="avis-texte"><b>5/5</b> sur Google<br>Nos artisans partenaires</div>
-        </div>
 
         <h1>Abattage et élagage d'arbres <span class="accent">en Essonne</span></h1>
         <p class="sous-titre">Arbre trop haut, dangereux ou trop proche de la maison ? Décrivez votre projet : un élagueur de votre secteur vous rappelle et passe chiffrer gratuitement.</p>
@@ -202,7 +192,7 @@
         <ul class="atouts">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Devis gratuit</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Démontage par grimpeur ou nacelle</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Équipe locale expérimentée</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Élagueurs locaux expérimentés</li>
         </ul>
         <a class="cta-hero" href="#devis">Demander mon devis gratuit</a>
       </div>
@@ -213,14 +203,15 @@
           <div class="img avant" style="background-image:url('avant.jpg')"><div class="placeholder">Photo « avant »<br>(avant.jpg)</div></div>
           <span class="badge g">Avant</span>
           <span class="badge d">Après</span>
+          <span class="badge illu">Images générées par IA</span>
           <div class="poignee" role="slider" aria-label="Comparer avant et après" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" tabindex="0"></div>
       </div>
 
       <aside class="carte" id="devis">
-        <form id="formDevis" novalidate>
+        <form id="formDevis" novalidate onsubmit="return false">
           <h2>Demandez votre devis gratuit</h2>
-          <span class="pastille">Réponse sous 24 h</span>
-          <p class="intro">Nous vous rappelons pour votre devis gratuit (Essonne).</p>
+          <span class="pastille">Rappel sous 24 h ouvrées</span>
+          <p class="intro">Un élagueur vous rappelle pour fixer la visite (Essonne).</p>
 
           <div class="ligne">
             <div class="champ">
@@ -229,7 +220,7 @@
             </div>
             <div class="champ">
               <label for="tel">Téléphone *</label>
-              <input id="tel" name="telephone" type="tel" placeholder="06 12 34 56 78" required autocomplete="tel" pattern="^(\+33|0)[1-9]([ .\-]?\d{2}){4}$">
+              <input id="tel" name="telephone" type="tel" placeholder="06 12 34 56 78" required autocomplete="tel">
             </div>
           </div>
 
@@ -244,16 +235,18 @@
             <p class="aide">Utile pour la visite. L'élagueur peut aussi vous la demander au téléphone.</p>
           </div>
 
-          <div class="ligne">
-            <div class="champ">
-              <label for="commune">Commune *</label>
-              <input id="commune" name="commune" placeholder="Évry-Courcouronnes" required autocomplete="address-level2">
-            </div>
-            <div class="champ">
-              <label for="cp">Code postal *</label>
-              <input id="cp" name="code_postal" placeholder="91000" required inputmode="numeric" pattern="^91\d{3}$" maxlength="5" autocomplete="postal-code">
-            </div>
+          <div class="champ">
+            <label for="cp">Code postal du chantier *</label>
+            <input id="cp" name="code_postal" placeholder="91000" required inputmode="numeric" maxlength="6" autocomplete="postal-code">
+            <p class="aide commune-ok" id="communeTrouvee" hidden></p>
           </div>
+
+          <div class="champ" id="champCommune" hidden>
+            <label for="communeChoix">Commune *</label>
+            <select id="communeChoix" data-champ="commune" required disabled><option value="">Choisissez votre commune</option></select>
+            <input id="communeSaisie" data-champ="commune" placeholder="Évry-Courcouronnes" autocomplete="address-level2" required disabled hidden>
+          </div>
+          <input type="hidden" name="commune" id="commune">
 
           <div class="champ">
             <label for="type">Votre projet *</label>
@@ -291,8 +284,8 @@
           </div>
 
           <div class="champ">
-            <label for="travaux">Décrivez votre projet *</label>
-            <textarea id="travaux" name="travaux" placeholder="Ex. : démontage d'un frêne de 22 m en fond de jardin…" required></textarea>
+            <label for="travaux">Décrivez votre projet <small>(facultatif)</small></label>
+            <textarea id="travaux" name="travaux" placeholder="Ex. : démontage d'un frêne de 22 m en fond de jardin…"></textarea>
           </div>
 
           <!-- Pot de miel : invisible pour un humain, rempli par les robots -->
@@ -300,13 +293,13 @@
 
           <button type="submit">Demander mon devis gratuit</button>
           <p class="erreur-envoi" id="erreurEnvoi" role="alert" hidden>L'envoi n'a pas abouti. Vérifiez votre connexion et réessayez, ou écrivez-nous à <a href="mailto:contact@sitaly.fr">contact@sitaly.fr</a>.</p>
-          <p class="mentions">Service gratuit et sans engagement. Vos coordonnées servent uniquement à établir votre devis et sont transmises à l'élagueur partenaire de votre secteur. <a href="politique-confidentialite.html">Politique de confidentialité</a></p>
+          <p class="mentions">Service gratuit et sans engagement. Vos coordonnées servent à établir votre devis : elles sont transmises à l'élagueur partenaire de votre secteur, qui rémunère Sitaly pour ce service. <a href="politique-confidentialite.html">Politique de confidentialité</a></p>
         </form>
 
         <div class="merci" id="merci" role="status">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
           <h3>Demande envoyée</h3>
-          <p>Merci ! Nous vous rappelons sous 24 h pour fixer la visite.</p>
+          <p>Merci ! Un élagueur de votre secteur vous rappelle sous 24 h ouvrées pour fixer la visite.</p>
         </div>
       </aside>
     </div>
@@ -317,9 +310,9 @@
       <h2 class="titre-section">Comment ça marche</h2>
       <p class="chapo">Trois étapes entre votre demande et un jardin dégagé.</p>
       <div class="etapes">
-        <div class="etape"><div class="num">1</div><h3>Vous décrivez vos travaux</h3><p>Remplissez le formulaire en deux minutes : arbre, hauteur, accès.</p></div>
-        <div class="etape"><div class="num">2</div><h3>Nous vous rappelons</h3><p>Un élagueur passe sur place et vous remet un devis gratuit et détaillé.</p></div>
-        <div class="etape"><div class="num">3</div><h3>Nous intervenons</h3><p>Taille, abattage ou démontage, puis évacuation des déchets verts.</p></div>
+        <div class="etape"><div class="num">1</div><h3>Vous décrivez vos travaux</h3><p>Remplissez le formulaire en une minute : arbre, hauteur, délai.</p></div>
+        <div class="etape"><div class="num">2</div><h3>Un élagueur vous rappelle</h3><p>Il passe voir l'arbre et vous remet un devis gratuit et détaillé.</p></div>
+        <div class="etape"><div class="num">3</div><h3>Il intervient</h3><p>Taille, abattage ou démontage, puis évacuation des déchets verts.</p></div>
       </div>
     </div>
   </section>
@@ -327,7 +320,7 @@
   <section class="claire" id="zones">
     <div class="wrap">
       <h2 class="titre-section">Zones d'intervention en Essonne (91)</h2>
-      <p class="chapo">Nous couvrons tout le département, notamment :</p>
+      <p class="chapo">Nos élagueurs partenaires couvrent tout le département, notamment :</p>
       <ul class="communes">
         <li>Évry-Courcouronnes</li><li>Corbeil-Essonnes</li><li>Massy</li><li>Palaiseau</li>
         <li>Savigny-sur-Orge</li><li>Sainte-Geneviève-des-Bois</li><li>Viry-Châtillon</li><li>Athis-Mons</li>
@@ -467,37 +460,184 @@
   // « Leads Élagage Essonne ». Voir ~/sitaly-forms/src/index.js, LEADS.
   const ENDPOINT = 'https://sitaly-forms.sitaly-forms.workers.dev';
 
-  // Identifiant de clic Google Ads, gardé le temps de la visite pour relier
-  // chaque lead à sa campagne.
-  const gclid = new URLSearchParams(location.search).get('gclid');
-  try { if (gclid) sessionStorage.setItem('gclid', gclid); } catch (e) {}
-  const lireGclid = () => { try { return sessionStorage.getItem('gclid') || ''; } catch (e) { return gclid || ''; } };
+  // Identifiant de clic Google Ads : gardé pendant la visite et joint à la
+  // demande seulement si le visiteur a accepté les cookies.
+  const gclid = new URLSearchParams(location.search).get('gclid') || '';
+  const garderGclid = () => { try { if (gclid && lireChoix() === 'accept') sessionStorage.setItem('gclid', gclid); } catch (e) {} };
+  const lireGclid = () => {
+    if (lireChoix() !== 'accept') return '';
+    try { return sessionStorage.getItem('gclid') || gclid; } catch (e) { return gclid; }
+  };
+  garderGclid();
+  document.getElementById('cookiesAccepter').addEventListener('click', garderGclid);
+  document.getElementById('cookiesRefuser').addEventListener('click', () => { try { sessionStorage.removeItem('gclid'); } catch (e) {} });
 
+  const LEAD_FORM = 'elagage-essonne';
   const form = document.getElementById('formDevis');
   const erreur = document.getElementById('erreurEnvoi');
   const bouton = form.querySelector('button[type="submit"]');
+
+  // Compteur d'étapes anonyme (ni cookie, ni identifiant) : chaque étape compte
+  // au plus une fois par visite, « pub » signale une visite venue d'une annonce.
+  const etapesVues = new Set();
+  const compter = etape => {
+    if (etapesVues.has(etape)) return;
+    etapesVues.add(etape);
+    try { navigator.sendBeacon(ENDPOINT + '/evt', JSON.stringify({ f: LEAD_FORM, e: etape, pub: Boolean(gclid || lireGclid()) })); } catch (e) {}
+  };
+  compter('vue');
+  const ctaHaut = document.querySelector('.cta-hero');
+  if (ctaHaut) ctaHaut.addEventListener('click', () => compter('bouton_haut'));
+  if ('IntersectionObserver' in window) {
+    const obs = new IntersectionObserver(entrees => {
+      if (entrees.some(en => en.isIntersecting)) { compter('formulaire_vu'); obs.disconnect(); }
+    }, { threshold: 0.3 });
+    obs.observe(form);
+  }
+  form.addEventListener('focusin', () => compter('formulaire_commence'));
+
+  // Téléphone : toutes les écritures courantes passent (06 12…, +33 6…, 0033…,
+  // +33 (0)6…, points, tirets, espaces en trop) et partent sous forme compacte.
+  const telCompact = s => s.replace(/\(0\)/g, '').replace(/[\s.\-()]/g, '').replace(/^0033/, '+33');
+  const telValide = s => /^(0[1-9]\d{8}|\+33[1-9]\d{8})$/.test(telCompact(s));
+  const cpCompact = s => s.replace(/\s/g, '');
+
+  const MESSAGES = {
+    nom: 'Indiquez votre nom.',
+    telephone: 'Numéro attendu : 06 12 34 56 78.',
+    email: 'Adresse email invalide. Vous pouvez aussi laisser ce champ vide.',
+    code_postal: 'Code postal de l\'Essonne attendu, par exemple 91000.',
+    commune: 'Choisissez votre commune.',
+    type_travaux: 'Choisissez votre projet.'
+  };
+  const nomChamp = ch => ch.dataset.champ || ch.name;
+
+  // Message d'erreur écrit sous le champ, effacé dès que la saisie est bonne.
+  const signaler = (ch, message) => {
+    let p = ch.parentElement.querySelector('.erreur-champ');
+    if (!message) {
+      ch.removeAttribute('aria-invalid');
+      ch.removeAttribute('aria-describedby');
+      if (p) p.remove();
+      return;
+    }
+    if (!p) {
+      p = document.createElement('p');
+      p.className = 'erreur-champ';
+      p.id = 'erreur-' + ch.id;
+      ch.insertAdjacentElement('afterend', p);
+    }
+    p.textContent = message;
+    ch.setAttribute('aria-invalid', 'true');
+    ch.setAttribute('aria-describedby', p.id);
+  };
+  const valider = ch => {
+    const nom = nomChamp(ch);
+    if (nom === 'telephone') ch.setCustomValidity(telValide(ch.value) ? '' : 'telephone');
+    if (nom === 'code_postal') ch.setCustomValidity(/^91\d{3}$/.test(cpCompact(ch.value)) ? '' : 'code_postal');
+    if (nom === 'nom' || ch.id === 'communeSaisie') ch.setCustomValidity(ch.value.trim() ? '' : 'vide');
+    if (nom === 'email') ch.setCustomValidity(!ch.value.trim() || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(ch.value.trim()) ? '' : 'email');
+    return ch.checkValidity();
+  };
+  const revalider = e => { const ch = e.target; if (ch.getAttribute('aria-invalid') && valider(ch)) signaler(ch, ''); };
+  form.addEventListener('input', revalider);
+  form.addEventListener('change', revalider);
+
+  // Commune déduite du code postal (API Découpage administratif de l'État) :
+  // une seule commune, rien à saisir ; plusieurs, une liste ; API muette, un
+  // champ libre. Le relais retrouve la commune s'il la reçoit vide.
+  const cp = form.elements.code_postal;
+  const champCommune = document.getElementById('champCommune');
+  const listeCommunes = document.getElementById('communeChoix');
+  const communeLibre = document.getElementById('communeSaisie');
+  const commune = document.getElementById('commune');
+  const trouvee = document.getElementById('communeTrouvee');
+  let cpCherche = '';
+  let recherche = Promise.resolve();
+  const montrer = mode => {
+    champCommune.hidden = !mode;
+    listeCommunes.hidden = mode !== 'listeCommunes';
+    listeCommunes.disabled = mode !== 'listeCommunes';
+    communeLibre.hidden = mode !== 'communeLibre';
+    communeLibre.disabled = mode !== 'communeLibre';
+    signaler(listeCommunes, '');
+    signaler(communeLibre, '');
+  };
+  const majCommune = () => {
+    const code = cpCompact(cp.value);
+    if (code === cpCherche) return recherche;
+    cpCherche = code;
+    commune.value = '';
+    trouvee.hidden = true;
+    montrer('');
+    if (!/^91\d{3}$/.test(code)) return (recherche = Promise.resolve());
+    const arret = new AbortController();
+    const minuteur = setTimeout(() => arret.abort(), 4000);
+    recherche = fetch('https://geo.api.gouv.fr/communes?codePostal=' + code + '&fields=nom&format=json', { signal: arret.signal })
+      .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then(liste => liste.map(c => c.nom).sort((a, b) => a.localeCompare(b, 'fr')))
+      .catch(() => null)
+      .then(noms => {
+        clearTimeout(minuteur);
+        if (code !== cpCherche) return;
+        if (noms && noms.length === 1) {
+          commune.value = noms[0];
+          trouvee.textContent = '✓ ' + noms[0];
+          trouvee.hidden = false;
+        } else if (noms && noms.length > 1) {
+          listeCommunes.length = 0;
+          listeCommunes.add(new Option('Choisissez votre commune', ''));
+          noms.forEach(n => listeCommunes.add(new Option(n)));
+          montrer('listeCommunes');
+        } else {
+          communeLibre.value = '';
+          montrer('communeLibre');
+        }
+      })
+      .catch(() => { if (code === cpCherche) { communeLibre.value = ''; montrer('communeLibre'); } });
+    return recherche;
+  };
+  cp.addEventListener('input', majCommune);
+  cp.addEventListener('change', majCommune);
+  listeCommunes.addEventListener('change', () => { commune.value = listeCommunes.value; });
+  communeLibre.addEventListener('input', () => { commune.value = communeLibre.value.trim(); });
+
+  let envoiEnCours = false;
   form.addEventListener('submit', async e => {
     e.preventDefault();
+    if (envoiEnCours) return;
+    envoiEnCours = true;
+    bouton.disabled = true;
     erreur.hidden = true;
-    let ok = true;
-    form.querySelectorAll('input:not(#website), textarea, select').forEach(ch => {
-      const valide = ch.checkValidity();
-      ch.style.borderColor = valide ? '' : '#d14343';
-      if (!valide && ok) { ch.focus(); ok = false; }
+    await majCommune();
+    let premier = null;
+    form.querySelectorAll('input:not(#website):not([type="hidden"]), textarea, select').forEach(ch => {
+      if (ch.disabled) return;
+      const ok = valider(ch);
+      signaler(ch, ok ? '' : MESSAGES[nomChamp(ch)] || 'Champ à compléter.');
+      if (!ok) {
+        compter('refus_' + nomChamp(ch));
+        if (!premier) premier = ch;
+      }
     });
-    if (!ok) return;
+    if (premier) {
+      envoiEnCours = false;
+      bouton.disabled = false;
+      premier.focus();
+      return;
+    }
+    compter('envoi');
 
     const v = name => form.elements[name].value.trim();
     const demande = {
-      lead_form: 'elagage-essonne',
-      name: v('nom'), phone: v('telephone'), email: v('email'),
-      address: v('adresse'), commune: v('commune'), postal_code: v('code_postal'),
+      lead_form: LEAD_FORM,
+      name: v('nom'), phone: telCompact(v('telephone')), email: v('email'),
+      address: v('adresse'), commune: commune.value, postal_code: cpCompact(v('code_postal')),
       work_type: v('type_travaux'), delai: v('delai'),
-      message: v('hauteur') ? v('travaux') + '\nHauteur de l\'arbre : ' + v('hauteur') : v('travaux'),
+      message: v('hauteur') ? (v('travaux') + '\nHauteur de l\'arbre : ' + v('hauteur')).trim() : v('travaux'),
       website: v('website'), page: location.pathname, gclid: lireGclid()
     };
 
-    bouton.disabled = true;
     bouton.textContent = 'Envoi en cours…';
     try {
       const r = await fetch(ENDPOINT, {
@@ -507,13 +647,18 @@
       });
       if (!r.ok) throw new Error(r.status);
       const reponse = await r.json().catch(() => ({}));
+      compter('envoi_ok');
       form.style.display = 'none';
-      document.getElementById('merci').style.display = 'block';
+      const merci = document.getElementById('merci');
+      merci.style.display = 'block';
+      merci.scrollIntoView({ block: 'center' });
       // Conversion Google Ads, seulement après accord cookies. Le numéro du lead
       // sert de transaction_id pour ne jamais compter deux fois la même demande.
       if (baliseChargee) gtag('event', 'conversion', { send_to: CONVERSION_DEVIS, value: 1.0, currency: 'EUR', transaction_id: reponse.id || '' });
     } catch (err) {
+      compter('envoi_erreur');
       erreur.hidden = false;
+      envoiEnCours = false;
       bouton.disabled = false;
       bouton.textContent = 'Demander mon devis gratuit';
     }
