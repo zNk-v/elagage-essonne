@@ -117,6 +117,11 @@
   .etape .num { width: 40px; height: 40px; border-radius: 50%; background: var(--vert-fonce); color: var(--or); font-weight: 800; display: grid; place-items: center; margin-bottom: 16px; }
   .etape h3 { font-size: 18px; margin-bottom: 6px; }
   .etape p { color: var(--gris); font-size: 15px; }
+  .prestations { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; list-style: none; }
+  .prestations li { background: #f4f7f5; border-radius: var(--rayon); padding: 24px; }
+  .prestations svg { width: 28px; height: 28px; stroke: var(--vert); margin-bottom: 12px; }
+  .prestations h3 { font-size: 17px; margin-bottom: 4px; }
+  .prestations p { color: var(--gris); font-size: 15px; }
   .communes { display: flex; flex-wrap: wrap; gap: 10px; list-style: none; }
   .communes li { background: var(--vert-clair); color: var(--vert-fonce); font-size: 14px; font-weight: 600; padding: 8px 14px; border-radius: 999px; }
 
@@ -150,11 +155,14 @@
     .hero .wrap { grid-template-columns: 1fr; grid-template-areas: "texte" "carte" "photo"; gap: 32px; }
     .atouts { margin-bottom: 0; }
     .carte { position: static; }
-    .etapes { grid-template-columns: 1fr; }
+    .etapes, .prestations { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     header .wrap { flex-direction: column; justify-content: center; height: auto; padding-top: 14px; padding-bottom: 14px; gap: 8px; }
     nav { gap: 20px; font-size: 14px; }
+  }
+  @media (max-width: 720px) {
+    nav a[href="#prestations"] { display: none; }
   }
   @media (max-width: 520px) {
     .wrap { padding: 0 16px; }
@@ -175,6 +183,7 @@
       <span>Élagage Essonne</span>
     </a>
     <nav>
+      <a href="#prestations">Prestations</a>
       <a href="#zones">Zones d'intervention</a>
       <a href="#fonctionnement">Comment ça marche</a>
     </nav>
@@ -192,7 +201,7 @@
         <ul class="atouts">
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Devis gratuit</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Démontage par grimpeur ou nacelle</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Élagueurs locaux expérimentés</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>Élagueur local expérimenté</li>
         </ul>
         <a class="cta-hero" href="#devis">Demander mon devis gratuit</a>
       </div>
@@ -305,6 +314,18 @@
     </div>
   </section>
 
+  <section class="claire" id="prestations">
+    <div class="wrap">
+      <h2 class="titre-section">Abattage, démontage et élagage en Essonne</h2>
+      <p class="chapo">Des chantiers sur grands arbres, de la taille à l'abattage.</p>
+      <ul class="prestations">
+        <li id="abattage"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 12l-8.5 8.5a2.1 2.1 0 0 1-3-3L11 9"/><path d="M15 13L9 7l4-4 6 6h3a8 8 0 0 1-7 7z"/></svg><h3>Abattage d'arbre</h3><p>Arbre dangereux ou trop haut : abattage, puis évacuation des déchets verts.</p></li>
+        <li id="demontage"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 21h20"/><path d="M4 21V12l5-4 5 4v9"/><circle cx="18" cy="8" r="3"/><path d="M18 11v10"/></svg><h3>Démontage d'arbre</h3><p>Arbre trop proche de la maison, démonté par grimpeur ou nacelle.</p></li>
+        <li id="elagage"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M8.1 8.1L12 12M20 4L8.1 15.9M14.8 14.8L20 20"/></svg><h3>Élagage de grands arbres</h3><p>Taille et allègement, déchets verts évacués.</p></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="claire" id="fonctionnement">
     <div class="wrap">
       <h2 class="titre-section">Comment ça marche</h2>
@@ -320,7 +341,7 @@
   <section class="claire" id="zones">
     <div class="wrap">
       <h2 class="titre-section">Zones d'intervention en Essonne (91)</h2>
-      <p class="chapo">Nos élagueurs partenaires couvrent tout le département, notamment :</p>
+      <p class="chapo">Notre élagueur partenaire intervient dans tout le département, notamment :</p>
       <ul class="communes">
         <li>Évry-Courcouronnes</li><li>Corbeil-Essonnes</li><li>Massy</li><li>Palaiseau</li>
         <li>Savigny-sur-Orge</li><li>Sainte-Geneviève-des-Bois</li><li>Viry-Châtillon</li><li>Athis-Mons</li>
@@ -334,7 +355,7 @@
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Élagage Essonne · Service gratuit de mise en relation avec des élagueurs du 91, édité par Sitaly</span>
+    <span>© 2026 Élagage Essonne · Service gratuit de mise en relation avec un élagueur du 91 · Édité par Sitaly</span>
     <span><a href="mentions-legales.html">Mentions légales</a> · <a href="politique-confidentialite.html">Politique de confidentialité</a> · <a href="#" id="gererCookies">Gérer les cookies</a></span>
   </div>
 </footer>
